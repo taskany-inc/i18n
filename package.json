@@ -1,0 +1,53 @@
+{
+    "name": "easy-typed-intl",
+    "version": "1.0.0",
+    "description": "Модуль для работы с i18n",
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts",
+    "bin": {
+        "generate-i18n": "./bin/generate-i18n.js",
+        "extract-i18n-meta": "./bin/extract-i18n-meta.js",
+        "import-i18n": "./bin/import-i18n.js",
+        "export-i18n-csv": "./bin/export-i18n-csv.js",
+        "import-i18n-csv": "./bin/import-i18n-csv.js"
+    },
+    "files": [
+        "lib",
+        "templates"
+    ],
+    "scripts": {
+        "build": "npm run clean && npm run compile",
+        "watch": "tsc -w",
+        "clean": "rm -rf lib",
+        "compile": "tsc",
+        "mocha": "mocha --require ts-node/register ./src/**/*.spec.ts $MOCHA_OPTS",
+        "unit": "npm run mocha",
+        "unit:coverage": "nyc npm run unit && nyc check-coverage",
+        "test": "jest",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm run test",
+        "ci:build": "npm run build"
+    },
+    "dependencies": {
+        "@babel/core": "7.13.8",
+        "@babel/types": "7.13.0",
+        "@babel/plugin-proposal-decorators": "7.21.0",
+        "@babel/preset-typescript": "7.13.0",
+        "@babel/preset-env": "7.13.15",
+        "@types/glob": "5.0.35",
+        "commander": "7.2.0",
+        "csv-parse": "4.15.4",
+        "@types/csv-parse": "1.2.2",
+        "csv-stringify": "5.6.2",
+        "@types/csv-stringify": "3.1.0",
+        "ejs": "3.1.6",
+        "glob": "7.1.6"
+    },
+    "devDependencies": {
+        "@types/ejs": "3.0.6",
+        "@types/jest": "26.0.22",
+        "@types/node": "14.14.37",
+        "jest": "26.6.3",
+        "typescript": "4.2.4"
+    }
+}
