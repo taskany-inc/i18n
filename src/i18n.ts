@@ -12,9 +12,23 @@ export function i18n<L extends string, T extends string>(
     formatter: I18nFormatter,
     getLang: I18nGetLang<L>,
 ) {
-    const lang = getLang();
+    const batchedGetLang = (() => {
+        let cachedLang: L | null  = null;
+            
+        return () => {
+            if (!cachedLang) {
+                cachedLang = getLang();
+
+                queueMicrotask(() => {
+                    cachedLang = null;
+                });
+            }
+            return cachedLang;
+        };
+    })();
 
     function resolveMsg(key: T): string {
+        const lang = batchedGetLang();
         if (!lang) {
             throw new Error('Не установлено значение локали');
         }
