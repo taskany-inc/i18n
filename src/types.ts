@@ -1,7 +1,7 @@
 /**
  * Отображение кейсета i18n.
  */
-export type I18nKeyset<T extends string> = Record<T, string>;
+export type I18nKeyset<T extends string> = Record<T, string | null>;
 
 export type I18nRaw<T> = Array<string | number | null | T>;
 
