@@ -42,7 +42,7 @@ export function i18n<L extends string, T extends string>(
             return '';
         }
 
-        return keyset[key] || key;
+        return keyset[key] as string || key;
     }
 
     function wrapped(key: T, opts?: Record<string, string | number>): string {
