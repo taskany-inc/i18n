@@ -38,6 +38,10 @@ export function i18n<L extends string, T extends string>(
             throw new Error('Не определён набор ключей для перевода');
         }
 
+        if (keyset[key] === null) {
+            return '';
+        }
+
         return keyset[key] || key;
     }
 
