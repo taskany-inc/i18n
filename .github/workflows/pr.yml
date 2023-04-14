@@ -30,6 +30,6 @@ jobs:
         run: |
           npm i
       - name: Unit
-        run: npm run unit
+        run: npm run test
       - name: Build
         run: npm run build
