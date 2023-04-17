@@ -204,9 +204,7 @@ export function getExportData(params: ExportDataParams) {
 
             if (langTranslations) {
                 const keyTranslation = langTranslations[key];
-                if (typeof keyTranslation === 'string') {
-                    result[lang] = keyTranslation;
-                }
+                result[lang] = keyTranslation;
             }
         });
 
