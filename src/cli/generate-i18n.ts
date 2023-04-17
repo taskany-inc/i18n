@@ -112,16 +112,19 @@ rootsList.forEach((root) => {
     const addedKeysHash: { [key: string]: true } = {};
     const unusedKeys: string[] = [];
     langs.forEach((lang) => {
+        const targetLang = translations[lang];
+        const targetLangKeys = Object.keys(targetLang);
+
         i18nKeys.forEach((key) => {
-            if (typeof translations[lang][key] !== 'string') {
-                translations[lang][key] = '';
+            if (!targetLangKeys.includes(key)) {
+                targetLang[key] = '';
                 if (!addedKeysHash[key]) {
                     addedKeysHash[key] = true;
                     addedKeys.push(key);
                 }
             }
         });
-        const storedKeys = Object.keys(translations[lang]);
+        const storedKeys = Object.keys(targetLang);
         storedKeys.forEach((storedKey) => {
             if (!i18nKeysHash[storedKey]) {
                 unusedKeys.push(`${lang}.json: ${storedKey}`);
