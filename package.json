@@ -29,7 +29,7 @@
         "@babel/core": "7.13.8",
         "@babel/plugin-proposal-decorators": "7.21.0",
         "@babel/preset-env": "7.21.4",
-        "@babel/preset-typescript": "7.13.0",
+        "@babel/preset-typescript": "7.21.4",
         "@babel/types": "7.13.0",
         "@types/csv-parse": "1.2.2",
         "@types/csv-stringify": "3.1.0",
