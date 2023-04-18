@@ -15,7 +15,7 @@ import getLang from '<%- getLangPath %>';
 import <%- lang %> from './<%- lang %>.json';
 <%_ } _%>
 
-type I18nKey = <%- langs.map((lang) => `keyof typeof ${lang}`).join(' & ') %>;
+export type I18nKey = <%- langs.map((lang) => `keyof typeof ${lang}`).join(' & ') %>;
 type I18nLang = <%- langs.map(l => `'${l}'`).join(' | ') %>;
 
 const keyset: I18nLangSet<I18nKey> = {};
