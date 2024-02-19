@@ -1,7 +1,7 @@
 {
-    "name": "easy-typed-intl",
-    "version": "1.0.3",
-    "description": "Модуль для работы с i18n",
+    "name": "@taskany/intl",
+    "version": "1.0.0",
+    "description": "Modular lightweight internationalization library for any TS/JS apps",
     "main": "lib/index.js",
     "typings": "lib/index.d.ts",
     "bin": {
