@@ -359,6 +359,7 @@ export interface Config {
     repo?: string;
     delimiter: string;
     env?: string;
+    failIfUnused?: boolean;
 }
 
 export function loadConfig(configName: string, otherOpts: Config) {
@@ -383,5 +384,6 @@ export function loadConfig(configName: string, otherOpts: Config) {
         fmt: otherOpts.fmt ? otherOpts.fmt : (config.fmt as string),
         env: otherOpts.env ? otherOpts.env : (config.env as string),
         getLang: otherOpts.getLang ? otherOpts.getLang : (config.getLang as string),
+        failIfUnused: otherOpts.failIfUnused ? otherOpts.failIfUnused : config.failIfUnused || false,
     };
 }

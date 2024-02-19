@@ -27,18 +27,19 @@ program
     .option('--getLang <string>', 'Getlang path')
     .option('--sort', 'Sort keys')
     .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
-    .option('-c, --config <string>', 'Load config from file', './i18n.config.json');
+    .option('-c, --config <string>', 'Load config from file', './i18n.config.json')
+    .option('--fail-if-unused', 'Return error code if script found unused keys', false);
 
 program.parse(process.argv);
 
 const opts = program.opts();
 
 const funcName = opts.func;
-const { fmt, path: pattern, env: envVarName, getLang, langs } = loadConfig(path.resolve(opts.config), opts as Config);
+const { fmt, path: pattern, env: envVarName, getLang, langs, failIfUnused = false } = loadConfig(path.resolve(opts.config), opts as Config);
 const { split: splitLangs, sort: sortKeys } = opts;
 
 if (!getLang) {
-    throw new Error('Не определён модуль определения локали');
+    throw new Error('Locale detection module not defined');
 }
 
 interface TemplateData {
@@ -92,6 +93,7 @@ function writeI18n(root: I18nRoot, translations: Translations) {
 }
 
 let hasChanges = false;
+let hasUnused = false;
 
 rootsList.forEach((root) => {
     const files = getFilesList(root.root);
@@ -131,6 +133,7 @@ rootsList.forEach((root) => {
             }
         });
     });
+
     if (addedKeys.length || unusedKeys.length) {
         console.log(`Folder: \x1b[33m${root.i18nFolder}\x1b[0m`);
         addedKeys.forEach((key) => {
@@ -144,10 +147,18 @@ rootsList.forEach((root) => {
         hasChanges = true;
     }
 
+    if (unusedKeys.length) {
+        hasUnused = true;
+    }
+
     if (i18nKeys.length) {
         writeI18n(root, translations);
     }
 });
+
+if (failIfUnused && hasUnused) {
+    throw new Error('Found unused keys');
+}
 
 if (!hasChanges) {
     console.log('Nothing changed');
