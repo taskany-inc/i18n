@@ -360,6 +360,7 @@ export interface Config {
     delimiter: string;
     env?: string;
     failIfUnused?: boolean;
+    quite?: boolean;
 }
 
 export function loadConfig(configName: string, otherOpts: Config) {
@@ -385,5 +386,6 @@ export function loadConfig(configName: string, otherOpts: Config) {
         env: otherOpts.env ? otherOpts.env : (config.env as string),
         getLang: otherOpts.getLang ? otherOpts.getLang : (config.getLang as string),
         failIfUnused: otherOpts.failIfUnused ? otherOpts.failIfUnused : config.failIfUnused || false,
+        quite: otherOpts.quite ? otherOpts.quite : config.quite || false,
     };
 }
