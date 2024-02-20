@@ -11,7 +11,7 @@ const program = new Command();
 program
     .option('-l, --lang <string>', 'Language to export')
     .option('-f, --func <string>', 'Function name', 't')
-    .option('-p, --path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
+    .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
     .option('-d, --delimiter <string>', 'Columns delimiter')
     .option('-o, --out <string>', 'Output file')
     .option('-c, --config <string>', 'Load config from file', './i18n.config.json');

@@ -9,7 +9,7 @@ const program = new Command();
 
 program
     .option('-l, --langs <string>', 'Languages to generate, for example "ru,en"')
-    .option('-p, --path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
+    .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
     .option('-f, --func <string>', 'Function name', 't')
     .option('-i, --input <string>', 'Input file')
     .option('-s, --sort', 'Sort keys')

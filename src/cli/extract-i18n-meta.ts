@@ -10,11 +10,11 @@ const program = new Command();
 program
     .option('-l, --langs <string>', 'Languages to generate, for example "ru,en"')
     .option('-f, --func <string>', 'Function name', 't')
-    .option('-p, --path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
+    .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
     .option('-s, --stats', 'Show stats only')
     .option('-o, --out <string>', 'Output file')
     .option('-h, --hash <string>', 'Commit hash, use $(git rev-parse HEAD)')
-    .option('-p, --prefix <string>', 'Path prefix, relative to git root, use $(git rev-parse --show-prefix)')
+    .option('--prefix <string>', 'Path prefix, relative to git root, use $(git rev-parse --show-prefix)')
     .option('-r, --repo <string>', 'Git repo link, use $(git config --get remote.origin.url)')
     .option('-c, --config <string>', 'Load config from file', './i18n.config.json');
 

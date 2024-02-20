@@ -26,7 +26,7 @@ program
     .option('--fmt <string>', 'Formatter path')
     .option('--getLang <string>', 'Getlang path')
     .option('--sort', 'Sort keys')
-    .option('-p, --path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
+    .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
     .option('-c, --config <string>', 'Load config from file', './i18n.config.json');
 
 program.parse(process.argv);
