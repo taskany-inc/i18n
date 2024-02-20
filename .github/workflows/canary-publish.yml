@@ -68,6 +68,6 @@ jobs:
           token: ${{ steps.auth.outputs.token }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Canary available: `easy-typed-intl@${{ steps.canary.outputs.version }}`
+            Canary available: `@taskany/intl@${{ steps.canary.outputs.version }}`
       
         
