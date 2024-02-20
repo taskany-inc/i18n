@@ -1,11 +1,11 @@
 /* eslint-disable */
 // Do not edit, use generator to update
 <%_ if (formatterPath) { _%>
-import { i18n, I18nLangSet } from 'easy-typed-intl';
+import { i18n, I18nLangSet } from '@taskany/intl';
 
 import fmt from '<%- formatterPath %>';
 <%_ } else { _%>
-import { i18n, fmt, I18nLangSet } from 'easy-typed-intl';
+import { i18n, fmt, I18nLangSet } from '@taskany/intl';
 <% } _%>
 <%_ if (getLangPath) { _%>
 import getLang from '<%- getLangPath %>';

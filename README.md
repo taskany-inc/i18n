@@ -5,7 +5,7 @@
 ## Установка
 
 ```shell
-$ npm i easy-typed-intl
+$ npm i @taskany/intl
 ```
 
 ## Использование
@@ -254,7 +254,7 @@ buyRaw(3, 2); // console.log(['Купи ', 3, 'кг яблок и ', 2, 'кг с
 
 ```ts
 import { IntlMessageFormat } from 'intl-messageformat';
-import { I18nFormatter, I18nFormatterStr, formatRaw } from 'easy-typed-intl';
+import { I18nFormatter, I18nFormatterStr, formatRaw } from '@taskany/intl';
 
 // модуль, определённый ранее для параметра --getLang
 import getLang from './i18n/getLang';
@@ -334,7 +334,7 @@ $ npm run extract-i18n-meta
         "datetime": "Mon May 24 2021 09:19:42 GMT+0300 (GMT+03:00)",
         "timestamp": 1621837182414,
         "pathPrefix": "packages/awesome-package/",
-        "repo": "git@github.com:easy-typed-intl.git"
+        "repo": "git@github.com:taskany-inc/i18n.git"
     },
     "entries": {
         "src/components/ProductControls": {

@@ -1,6 +1,6 @@
 import { fmt } from './fmt';
 
-describe('easy-typed-intl', () => {
+describe('@taskany/intl', () => {
     describe('fmt.str', () => {
         it('should work without params', () => {
             expect(fmt.str('Simple flat string', {})).toEqual('Simple flat string');
