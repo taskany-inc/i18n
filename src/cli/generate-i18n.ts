@@ -26,6 +26,7 @@ program
     .option('--fmt <string>', 'Formatter path')
     .option('--getLang <string>', 'Getlang path')
     .option('--sort', 'Sort keys')
+    .option('-q, --quite', 'be quite', false)
     .option('--path <string>', 'Path or pattern to i18n root, for example "src/{components/*\\,utils\\,somepath}"')
     .option('-c, --config <string>', 'Load config from file', './i18n.config.json')
     .option('--fail-if-unused', 'Return error code if script found unused keys', false);
@@ -35,7 +36,7 @@ program.parse(process.argv);
 const opts = program.opts();
 
 const funcName = opts.func;
-const { fmt, path: pattern, env: envVarName, getLang, langs, failIfUnused = false } = loadConfig(path.resolve(opts.config), opts as Config);
+const { fmt, path: pattern, env: envVarName, getLang, langs, failIfUnused = false, quite = false } = loadConfig(path.resolve(opts.config), opts as Config);
 const { split: splitLangs, sort: sortKeys } = opts;
 
 if (!getLang) {
@@ -51,7 +52,7 @@ interface TemplateData {
     getLangPath?: string;
 }
 
-const rootsList = getRootList(pattern);
+const rootsList = getRootList(pattern, quite);
 
 function render(data: TemplateData) {
     const tplDir = path.resolve(__dirname, '../../templates');
@@ -134,15 +135,6 @@ rootsList.forEach((root) => {
         });
     });
 
-    if (addedKeys.length || unusedKeys.length) {
-        console.log(`Folder: \x1b[33m${root.i18nFolder}\x1b[0m`);
-        addedKeys.forEach((key) => {
-            console.log(`Added key: ${key}`);
-        });
-        unusedKeys.forEach((key) => {
-            console.log(`\x1b[31mUnused key\x1b[0m: ${key}`);
-        });
-    }
     if (addedKeys.length) {
         hasChanges = true;
     }
@@ -153,6 +145,18 @@ rootsList.forEach((root) => {
 
     if (i18nKeys.length) {
         writeI18n(root, translations);
+    }
+
+    if (!quite) {
+        if (addedKeys.length || unusedKeys.length) {
+            console.log(`Folder: \x1b[33m${root.i18nFolder}\x1b[0m`);
+            addedKeys.forEach((key) => {
+                console.log(`Added key: ${key}`);
+            });
+            unusedKeys.forEach((key) => {
+                console.log(`\x1b[31mUnused key\x1b[0m: ${key}`);
+            });
+        }
     }
 });
 
